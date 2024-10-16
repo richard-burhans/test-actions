@@ -31,4 +31,5 @@ jobs:
         run: echo "::notice ::sep-annotations ${{ steps.meta.outputs.sep-annotations }}:"
       - name: bake-target
         run: echo "::notice ::bake-target ${{ steps.meta.outputs.bake-target }}:"
-        
+      - name: json
+        run: echo "::notice ::json ${{ steps.meta.outputs.json }}:"
