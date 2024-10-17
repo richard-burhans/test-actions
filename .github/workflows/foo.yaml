@@ -12,24 +12,30 @@ jobs:
         with:
           images: ncbi/egapx
       - name: version
-        run: echo "::notice ::version ${{ steps.meta.outputs.version }}:"
+        run: echo "::notice ::version ${{ steps.meta.outputs.version }}"
       - name: images
-        run: echo "::notice ::images ${{ steps.meta.outputs.images }}:"
+        run: echo "::notice ::images ${{ steps.meta.outputs.images }}"
       - name: tags
-        run: echo "::notice ::tags ${{ steps.meta.outputs.tags }}:"
+        run: echo "::notice ::tags ${{ steps.meta.outputs.tags }}"
       - name: flavor
-        run: echo "::notice ::flavor ${{ steps.meta.outputs.flavor }}:"
+        run: echo "::notice ::flavor ${{ steps.meta.outputs.flavor }}"
       - name: labels
-        run: echo "::notice ::labels ${{ steps.meta.outputs.labels }}:"
+        run: echo "::notice ::labels ${{ steps.meta.outputs.labels }}"
       - name: annotations
-        run: echo "::notice ::annotations ${{ steps.meta.outputs.annotations }}:"
+        run: echo "::notice ::annotations ${{ steps.meta.outputs.annotations }}"
       - name: sep-tags
-        run: echo "::notice ::sep-tags ${{ steps.meta.outputs.sep-tags }}:"
+        run: echo "::notice ::sep-tags ${{ steps.meta.outputs.sep-tags }}"
       - name: sep-labels
-        run: echo "::notice ::sep-labels ${{ steps.meta.outputs.sep-labels }}:"
+        run: echo "::notice ::sep-labels ${{ steps.meta.outputs.sep-labels }}"
       - name: sep-annotations
-        run: echo "::notice ::sep-annotations ${{ steps.meta.outputs.sep-annotations }}:"
+        run: echo "::notice ::sep-annotations ${{ steps.meta.outputs.sep-annotations }}"
       - name: bake-target
-        run: echo "::notice ::bake-target ${{ steps.meta.outputs.bake-target }}:"
+        run: echo "::notice ::bake-target ${{ steps.meta.outputs.bake-target }}"
       - name: json
-        run: echo "::notice ::json ${{ steps.meta.outputs.json }}:"
+        run: echo "::notice ::json ${{ steps.meta.outputs.json }}"
+      - name: bake-file-tags
+        run: echo "::notice ::bake-file-tags ${{ steps.meta.outputs.bake-file-tags }}"
+      - name: bake-file-labels
+        run: echo "::notice ::baek-file-labels ${{ steps.meta.outputs.bake-file-labels }}"
+      - name: bake-file-annotations
+        run: echo "::notice ::baek-file-annotations ${{ steps.meta.outputs.bake-file-annotations }}"
