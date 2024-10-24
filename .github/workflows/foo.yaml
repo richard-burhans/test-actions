@@ -5,6 +5,8 @@ jobs:
   get-data:
     name: get-data
     runs-on: ubuntu-latest
+    outputs:
+      
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -27,7 +29,7 @@ jobs:
     needs: get-data
     strategy:
       matrix:
-        build_tags: ${{ fromJSON(jobs.get-data.outputs.tags_json) }}
+        build_tags: ${{ fromJSON(needs.get-data.outputs.tags_json) }}
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
