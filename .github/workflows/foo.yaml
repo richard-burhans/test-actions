@@ -27,7 +27,7 @@ jobs:
     needs: get-data
     strategy:
       matrix:
-        build_tags: ${{ fromJSON(needs.job1.outputs.tags_json) }}
+        build_tags: ${{ fromJSON(needs.get-data.outputs.tags_json) }}
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
