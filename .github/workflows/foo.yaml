@@ -6,6 +6,7 @@ jobs:
     name: get-data
     runs-on: ubuntu-latest
     outputs:
+      tags_json: ${{ steps.get-tags.outputs. }}
       
     steps:
       - name: Checkout code
@@ -22,6 +23,7 @@ jobs:
           path: ".github/workflows/requirements.txt"
 
       - name: Run Python script
+        id: get-tags
         run: python ".github/workflows/check.py" >> $GITHUB_OUTPUT
   foo:
     name: foo
