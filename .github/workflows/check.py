@@ -120,7 +120,7 @@ for src_tag, src_epoch in src_dict.items():
         if src_epoch >= dst_epoch:
             build_tag_list.append(src_tag)
     else:
-        build_tag_list.append(src_tag)
+        build_tag_list.append(f"ncbi/egapx:{src_tag}")
 
 json_string = json.dumps(build_tag_list)
 print(f"tags_json={json_string}")
