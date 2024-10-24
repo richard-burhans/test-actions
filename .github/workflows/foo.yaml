@@ -6,14 +6,25 @@ jobs:
     name: get-data
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version-file: ".python-version"
-    
+          python-version-file: ".github/workflows/.python-version"
+
+      - name: Install Python dependencies
+        uses: py-actions/py-dependency-install@v4
+        with:
+          path: 
+
+      - name: Run Python script
+        run: python check.py >> $GITHUB_OUTPUT
   foo:
     name: foo
     runs-on: ubuntu-latest
+    needs: get-data
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
