@@ -6,7 +6,7 @@ jobs:
     name: get-data
     runs-on: ubuntu-latest
     outputs:
-      tags_json: ${{ steps.get-tags.outputs. }}
+      tags_json: ${{ steps.get-tags.outputs.tags_json }}
       
     steps:
       - name: Checkout code
