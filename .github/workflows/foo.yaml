@@ -43,7 +43,7 @@ jobs:
         with:
           registry: quay.io
           username: ${{ vars.QUAY_USERNAME }}
-          password: ${{ secrets.QUAY_ROBOT_TOKEN }}#
+          password: ${{ secrets.QUAY_ROBOT_TOKEN }}
 
       - name: Build and push
         uses: docker/build-push-action@v6
