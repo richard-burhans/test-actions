@@ -21,10 +21,13 @@ jobs:
 
       - name: Run Python script
         run: python ".github/workflows/check.py" >> $GITHUB_OUTPUT
-#  foo:
-#    name: foo
-#    runs-on: ubuntu-latest
-#    needs: get-data
+  foo:
+    name: foo
+    runs-on: ubuntu-latest
+    needs: get-data
+    strategy:
+      matrix:
+        build_tags: ${{ fromJSON(needs.job1.outputs. }}
 #    steps:
 #      - name: Set up QEMU
 #        uses: docker/setup-qemu-action@v3
