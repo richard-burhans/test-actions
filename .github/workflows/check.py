@@ -122,6 +122,5 @@ for src_tag, src_epoch in src_dict.items():
     else:
         build_tag_list.append(src_tag)
 
-tag_line = ":".join([str(x) for x in build_tag_list])
-
-print(f"tags_to_build={tag_line}")
+json_string = json.dumps(build_tag_list)
+print(f"tags_json={json_string}")
