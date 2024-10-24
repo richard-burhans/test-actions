@@ -1,5 +1,5 @@
-ARG BUILD_TAG=fake
-FROM ncbi/egpax:$BUILD_TAG
+ARG BUILD_SRC=fake
+FROM $BUILD_SRC
 # install OS updates
 RUN DEBIAN_FRONTEND=noninteractive /bin/bash -c "apt-get update && apt-get upgrade -u -y && apt-get dist-upgrade -y && apt-get autoremove -y && apt-get autoclean -y"
 # install pyvenv-3 binary for python3
