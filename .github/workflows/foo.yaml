@@ -20,7 +20,7 @@ jobs:
           path: ".github/workflows/requirements.txt"
 
       - name: Run Python script
-        run: python check.py >> $GITHUB_OUTPUT
+        run: python ".github/workflows/check.py" >> $GITHUB_OUTPUT
 #  foo:
 #    name: foo
 #    runs-on: ubuntu-latest
@@ -39,7 +39,7 @@ jobs:
 #          username: ${{ vars.QUAY_USERNAME }}
 #          password: ${{ secrets.QUAY_ROBOT_TOKEN }}#
 
-      - name: Build and push
-        uses: docker/build-push-action@v6
-        with:
-          context: "{{defaultContext}}:.github/docker"
+#      - name: Build and push
+#        uses: docker/build-push-action@v6
+#        with:
+#          context: "{{defaultContext}}:.github/docker"
