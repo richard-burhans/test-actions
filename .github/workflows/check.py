@@ -28,7 +28,7 @@ def load_json_schema(pathname: str) -> jsonschema.validators.Draft202012Validato
 
 
 dockerhub_tags_validator = load_json_schema("dockerhub-tags.schema")
-dockerhub_error_validator = load_json_schema("quay-error.schema")
+dockerhub_error_validator = load_json_schema("dockerhub-error.schema")
 
 
 def get_dockerhub_tags_page(repo: str, page: int = 1, page_size: int = 10) -> tuple[bool, dict[str, int]]:
