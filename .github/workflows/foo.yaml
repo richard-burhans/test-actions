@@ -2,6 +2,15 @@ on:
   workflow_dispatch:
 
 jobs:
+  get-data:
+    name: get-data
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: ".python-version"
+    
   foo:
     name: foo
     runs-on: ubuntu-latest
