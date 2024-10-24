@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/product.schema.json",
+  "title": "Errors",
+  "description": "Quay errors",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "integer",
+      "description": ""
+    },
+    "type": {
+      "type": "string",
+      "description": ""
+    },
+    "detail": {
+      "type": "string",
+      "description": ""
+    },
+    "title": {
+      "type": "string",
+      "description": ""
+    },
+    "error_message": {
+      "type": "string",
+      "description": ""
+    },
+    "error_type": {
+      "type": "string",
+      "description": ""
+    }
+  }
+}
