@@ -27,8 +27,8 @@ def load_json_schema(pathname: str) -> jsonschema.validators.Draft202012Validato
     return jsonschema.Draft202012Validator(schema)
 
 
-dockerhub_tags_validator = load_json_schema("dockerhub-tags.schema")
-dockerhub_error_validator = load_json_schema("dockerhub-error.schema")
+dockerhub_tags_validator = load_json_schema(".github/workflows/dockerhub-tags.schema")
+dockerhub_error_validator = load_json_schema(".github/workflows/dockerhub-error.schema")
 
 
 def get_dockerhub_tags_page(repo: str, page: int = 1, page_size: int = 10) -> tuple[bool, dict[str, int]]:
@@ -77,8 +77,8 @@ def get_dockerhub_tags(repo: str) -> dict[str, int]:
     return tag_dict
 
 
-quay_tags_validator = load_json_schema("quay-tags.schema")
-quay_error_validator = load_json_schema("quay-error.schema")
+quay_tags_validator = load_json_schema(".github/workflows/quay-tags.schema")
+quay_error_validator = load_json_schema(".github/workflows/quay-error.schema")
 
 
 def get_quay_tags(repo: str) -> dict[str, int]:
