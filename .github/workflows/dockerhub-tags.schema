@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/product.schema.json",
+  "title": "Tags",
+  "description": "Dockerhub tags",
+  "type": "object",
+  "properties": {
+    "count": {
+      "type": "integer",
+      "description": "total number of results available across all pages"
+    },
+    "next": {
+      "type": ["string", "null"],
+      "description": "link to next page of results if any"
+    },
+    "previous": {
+      "type": ["string", "null"],
+      "description": "link to previous page of results if any"
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/tag"
+      }
+    }
+  },
+  "$defs": {
+    "tag": {
+      "type": "object",
+      "properties": {
+        "creator": {
+          "type": "integer",
+          "description": "ID of the user that pushed the tag"
+        },
+        "id": {
+          "type": "integer",
+          "description": "tag ID"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/image"
+          }
+        },
+        "last_updated": {
+          "type": ["string", "null"],
+          "description": "datetime of last update"
+        },
+        "last_updater": {
+          "type": "integer",
+          "description": "ID of the last user that updated the tag"
+        },
+        "last_updater_username": {
+          "type": "string",
+          "description": "Hub username of the user that updated the tag"
+        },
+        "name": {
+          "type": "string",
+          "description": "name of the tag"
+        },
+        "repository": {
+          "type": "integer",
+          "description": "repository ID"
+        },
+        "full_size": {
+          "type": "integer",
+          "description": "compressed size (sum of all layers) of the tagged image"
+        },
+        "v2": {
+          "type": "boolean",
+          "description": "repository API version"
+        },
+        "tag_status": {
+          "type": "string",
+          "enum": ["active", "inactive"],
+          "description": "whether a tag has been pushed to or pulled in the past month"
+        },
+        "tag_last_pulled": {
+          "type": ["string", "null"],
+          "description": "datetime of last pull"
+        },
+        "tag_last_pushed": {
+          "type": ["string", "null"],
+          "description": "datetime of last push"
+        },
+        "media_type": {
+          "type": "string",
+          "description": "media_type"
+        },
+        "content_type": {
+          "type": "string",
+          "description": "content_type"
+        },
+        "digest": {
+          "type": "string",
+          "description": "digest"
+        }
+      }
+    },
+    "image": {
+      "type": "object",
+      "properties": {
+        "architecture": {
+          "type": "string",
+          "description": "CPU architecture"
+        },
+        "features": {
+          "type": "string",
+          "description": "CPU features"
+        },
+        "variant": {
+          "type": ["string", "null"],
+          "description": "CPU variant"
+        },
+        "digest": {
+          "type": ["string", "null"],
+          "description": "image digest"
+        },
+        "os": {
+          "type": "string",
+          "description": "operating system"
+        },
+        "os_features": {
+          "type": "string",
+          "description": "OS features"
+        },
+        "os_version": {
+          "type": ["string", "null"],
+          "description": "OS version"
+        },
+        "size": {
+          "type": "integer",
+          "description": "size of the image"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["active", "inactive"],
+          "description": "Status of the image"
+        },
+        "last_pulled": {
+          "type": ["string", "null"],
+          "description": "datetime of last pull"
+        },
+        "last_pushed": {
+          "type": ["string", "null"],
+          "description": "datetime of last push"
+        }
+      }
+    }
+  }
+}
