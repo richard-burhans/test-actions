@@ -27,6 +27,7 @@ jobs:
 
   build-container:
     name: Build EGAPx containers
+    needs: get-tags
     runs-on: ubuntu-latest
     strategy:
       matrix: ${{ fromJson(needs.get-tags.outputs.matrix) }}
