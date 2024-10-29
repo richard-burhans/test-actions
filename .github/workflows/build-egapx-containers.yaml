@@ -30,7 +30,8 @@ jobs:
     needs: get-tags
     runs-on: ubuntu-latest
     strategy:
-      matrix: ${{ fromJson(needs.get-tags.outputs.matrix) }}
+      matrix:
+        egapx_tag: ${{ fromJSON(needs.get-tags.outputs.egapx_tags }}
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
