@@ -51,7 +51,5 @@ jobs:
         with:
           context: ".github/docker"
           no-cache: true
-          platforms:
-            - linux/amd64
           tags:
             - $${{ matrix.egapx_tag }}
