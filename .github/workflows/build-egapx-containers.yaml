@@ -6,7 +6,7 @@ jobs:
     name: Get a list of tags we need to build
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.tags-to-build.matrix }} 
+      egapx_tags: ${{ steps.tags-to-build.egapx_tags }} 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

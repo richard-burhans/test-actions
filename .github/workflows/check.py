@@ -130,6 +130,6 @@ tags_to_build: list[str] = []
 dockerhub_tags = DockerhubTags("ncbi/egapx", ".github/workflows/dockerhub-tags.schema", ".github/workflows/dockerhub-error.schema")
 quay_tags = QuayTags("galaxy/egpax", ".github/workflows/quay-tags.schema", ".github/workflows/quay-error.schema")
 
-matrix = {"egapx_tag": dockerhub_tags.get_missing_tags(quay_tags)}
-json_string = json.dumps(matrix)
-print(f"matrix='{json_string}'")
+tags_to_build = dockerhub_tags.get_missing_tags(quay_tags)}
+json_string = json.dumps(tags_to_build)
+print(f"egapx_tgs='{tags_to_build}'")
