@@ -25,10 +25,6 @@ jobs:
         id: tags-to-build
         run: python ".github/workflows/check.py" >> $GITHUB_OUTPUT
 
-## runs-on: ${{ fromJson(inputs.runner_labels) }}
-
-BUILD_SRC
-        
   build-container:
     name: Build EGAPx containers
     runs-on: ubuntu-latest
