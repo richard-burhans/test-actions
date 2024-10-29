@@ -24,6 +24,8 @@ jobs:
       - name: Run Python script
         id: tags-to-build
         run: python ".github/workflows/check.py" >> $GITHUB_OUTPUT
+
+## runs-on: ${{ fromJson(inputs.runner_labels) }}
         
   build-container:
     name: Build EGAPx containers

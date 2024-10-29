@@ -5,92 +5,51 @@
   "description": "Quay tags",
   "type": "object",
   "properties": {
-    "namespace": {
-      "type": "string",
-      "description": ""
+    "tags": {
+      "type": "array",
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/tag"
+      }
     },
-    "name": {
-      "type": "string",
-      "description": ""
-    },
-    "kind": {
-      "type": "string",
-      "description": ""
-    },
-    "description": {
-      "type": ["string", "null"],
-      "description": ""
-    },
-    "is_public": {
-      "type": "boolean",
-      "description": ""
-    },
-    "is_organization": {
-      "type": "boolean",
-      "description": ""
-    },
-    "is_starred": {
-      "type": "boolean",
-      "description": ""
-    },
-    "status_token": {
-      "type": "string",
-      "description": ""
-    },
-    "trust_enabled": {
-      "type": "boolean",
-      "description": ""
-    },
-    "tag_expiration_s": {
+    "page": {
       "type": "integer",
       "description": ""
     },
-    "is_free_account": {
+    "has_additional": {
       "type": "boolean",
       "description": ""
-    },
-    "state": {
-      "type": "string",
-      "description": ""
-    },
-    "tags": {
+    }
+  },
+  "$defs": {
+    "tag": {
       "type": "object",
-      "description": "",
-      "additionalProperties": {
-        "type": "object",
-        "required": [
-          "name",
-          "size",
-          "last_modified",
-          "manifest_digest"
-        ],
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": ""
-          },
-          "size": {
-            "type": "integer",
-            "description": ""
-          },
-          "last_modified": {
-            "type": "string",
-            "description": ""
-          },
-          "manifest_digest": {
-            "type": "string",
-            "description": ""
-          }
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": ""
+        },
+        "reversion": {
+          "type": "boolean",
+          "description": ""
+        },
+        "start_ts": {
+          "type": "integer",
+          "description": ""
+        },
+        "manifest_digest": {
+          "type": "string",
+          "description": ""
+        },
+        "is_manifest_list": {
+          "type": "boolean",
+          "description": ""
+        },
+        "last_modified": {
+          "type": "string",
+          "description": ""
         }
       }
-    },
-    "can_write": {
-      "type": "boolean",
-      "description": ""
-    },
-    "can_admin": {
-      "type": "boolean",
-      "description": ""
     }
   }
 }
