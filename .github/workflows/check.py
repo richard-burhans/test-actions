@@ -17,7 +17,8 @@ class ImageTags(metaclass=abc.ABCMeta):
         self.tags_validator: jsonschema.validators.Draft202012Validator = self._load_json_schema(tags_schema_pathname)
         self.error_validator: jsonschema.validators.Draft202012Validator = self._load_json_schema(error_schema_pathname)
         self.earliest_epoch = earliest_epoch
-        self.tag_dict: dict[str, list[tuple[int, str, str]]] = {}
+        self.tag_dict: dict[str, int] = {}
+        self.load_tags()
 
     def _load_json_schema(self, pathname: str) -> jsonschema.validators.Draft202012Validator:
         try:
@@ -53,9 +54,22 @@ class ImageTags(metaclass=abc.ABCMeta):
                 sys.exit(f"ERROR: unknown tags json format: {response.text}")
         else:
             if not self.error_validator.is_valid(tags_json):
-                sys.exit("ERROR: unknown error json format: response.text")
+                sys.exit(f"ERROR: unknown error json format: {response.text}")
 
         return tags_json
+
+    def get_missing_tags(self, other) -> list[str]:
+        tag_list: list[str] = []
+
+        for self_tag, self_ts in self.tag_dict.items():
+            if self_tag not in other.tag_dict:
+                tag_list.append(self_tag)
+            else:
+                other_ts = other.tag_dict[self_tag]
+                if other_ts < self_ts:
+                    tag_list.append(self_tag)
+
+        return tag_list
 
     @abc.abstractmethod
     def load_tags(self, page: int = 1, page_size: int = 10) -> None:
@@ -77,22 +91,12 @@ class DockerhubTags(ImageTags):
 
             for result in results:
                 name = result["name"]
-                platform_tuples = set()
-
-                for image in result["images"]:
-                    architecture = image["architecture"]
-                    os = image["os"]
-                    platform_tuples.add((os, architecture))
-
                 last_updated = result["last_updated"]
                 last_updated_dt = whenever.Instant.parse_rfc3339(last_updated)
                 last_updated_ts = last_updated_dt.timestamp()
 
                 if name != "latest" and last_updated_ts >= self.earliest_epoch:
-                    if len(platform_tuples) > 0:
-                        tag_list = self.tag_dict.setdefault(name, [])
-                        for os, architecture in platform_tuples:
-                            tag_list.append((last_updated_dt.timestamp(), os, architecture))
+                    self.tag_dict[name] = last_updated_ts
 
             page += 1
 
@@ -116,27 +120,16 @@ class QuayTags(ImageTags):
                 last_modified_ts = last_modified_dt.timestamp()
 
                 if name != "latest" and last_modified_ts >= self.earliest_epoch:
-                    tag_list = self.tag_dict.setdefault(name, [])
-                    tag_list.append((last_modified_ts, "", ""))
+                    self.tag_dict[name] = last_modified_ts
 
             page += 1
+
 
 tags_to_build: list[str] = []
 
 dockerhub_tags = DockerhubTags("ncbi/egapx", ".github/workflows/dockerhub-tags.schema", ".github/workflows/dockerhub-error.schema")
-dockerhub_tags.load_tags()
-
 quay_tags = QuayTags("galaxy/egpax", ".github/workflows/quay-tags.schema", ".github/workflows/quay-error.schema")
-quay_tags.load_tags()
 
-for tag in dockerhub_tags.tag_dict.keys():
-    for dockerhub_ts, os, arch in dockerhub_tags.tag_dict[tag]:
-        if tag not in quay_tags.tag_dict:
-            tags_to_build.append(tag)
-        else:
-            for quay_ts, _, _ in  quay_tags.tag_dict[tag]:
-                if dockerhub_ts > quay_ts:
-                    tags_to_build.append(tag)
-
-
-print (tags_to_build)
+matrix = {"egapx_tag": dockerhub_tags.get_missing_tags(quay_tags)}
+json_string = json.dumps(matrix)
+print(f"matrix='{json_string}'")
