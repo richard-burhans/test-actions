@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: get-tags
     steps:
-      - run: echo ${{ needs.get-tags.outputs.egapx_tags }}
+      - run: echo ${{ steps.get-tags.outputs.egapx_tags }}
 
 #    strategy:
 #      matrix:
