@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      egapx_tags: ${{ steps.get-tags.egapx_tags }} 
+      egapx_tags: ${{ steps.get-tags..outputs.egapx_tags }} 
 
     steps:
       - name: Checkout code
@@ -25,7 +25,7 @@ jobs:
 
       - name: Run Python script
         id: get-tags
-        run: python ".github/workflows/check.py"
+        run: python ".github/workflows/check.py" >> "$GITHUB_OUTPUT"
 
       - name: foof
         run: echo ${{ steps.get-tags.outputs.egapx_tags }}
