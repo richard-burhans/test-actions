@@ -60,8 +60,7 @@ jobs:
         with:
           build-args: BUILD_SRC=docker.io/ncbi/egapx:${{ matrix.egapx_tag }}
           context: .github/docker
-          no-cache: true
+          no-cache: false
           platforms: linux/amd64
           push: true
           tags: quay.io/galaxy/egpax:${{ matrix.egapx_tag }}
-          outputs: type=image,name=target
