@@ -23,6 +23,9 @@ jobs:
         with:
           path: ".github/workflows/requirements.txt"
 
+      - name: Run Python script no-redirect
+        run: python ".github/workflows/check.py"
+
       - name: Run Python script
         id: tags-to-build
         run: python ".github/workflows/check.py" >> "$GITHUB_OUTPUT"
