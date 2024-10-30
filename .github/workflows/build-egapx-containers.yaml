@@ -2,12 +2,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  get-tags:
-    name: Get a list of tags we need to build
+  get-egapx-tags:
+    name: Get a list of EGPAx tags we need to build
     runs-on: ubuntu-latest
 
     outputs:
-      egapx_tags: ${{ steps.tags-to-build.egapx_tags }} 
+      egapx_tags: ${{ steps.get-tags.egapx_tags }} 
 
     steps:
       - name: Checkout code
@@ -23,12 +23,15 @@ jobs:
         with:
           path: ".github/workflows/requirements.txt"
 
-      - name: Run Python script no-redirect
-        run: python ".github/workflows/check.py"
-
       - name: Run Python script
-        id: tags-to-build
+        id: get-tags
         run: python ".github/workflows/check.py" >> "$GITHUB_OUTPUT"
+
+      - name: foof
+        run: echo "$GITHUB_OUTPUT"
+
+      - name: boof
+        run: cat "$GITHUB_OUTPUT"
 
   build-container:
     name: Build EGAPx containers
