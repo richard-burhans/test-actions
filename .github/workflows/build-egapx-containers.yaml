@@ -25,14 +25,14 @@ jobs:
 
       - name: Run Python script
         id: tags-to-build
-        run: python ".github/workflows/check.py" >> $GITHUB_OUTPUT
+        run: python ".github/workflows/check.py" >> "$GITHUB_OUTPUT"
 
   build-container:
     name: Build EGAPx containers
     needs: get-tags
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ fromJSON(needs.get-tags.outputs.egapx_tags) }}
+      - run: echo ${{ needs.get-tags.outputs.egapx_tags }}
 
 #    strategy:
 #      matrix:
