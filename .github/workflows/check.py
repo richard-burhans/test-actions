@@ -58,7 +58,7 @@ class ImageTags(metaclass=abc.ABCMeta):
 
         return tags_json
 
-    def get_missing_tags(self, other) -> list[str]:
+    def get_missing_tags(self, other: "ImageTags") -> list[str]:
         tag_list: list[str] = []
 
         for self_tag, self_ts in self.tag_dict.items():
