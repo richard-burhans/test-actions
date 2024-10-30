@@ -16,16 +16,16 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version-file: ".github/workflows/.python-version"
+          python-version-file: .github/workflows/.python-version
 
       - name: Install Python dependencies
         uses: py-actions/py-dependency-install@v4
         with:
-          path: ".github/workflows/requirements.txt"
+          path: .github/workflows/requirements.txt
 
       - name: Run Python script
         id: get-tags
-        run: python ".github/workflows/check.py" >> "$GITHUB_OUTPUT"
+        run: python .github/workflows/check.py >> "$GITHUB_OUTPUT"
 
   build-egapx-containers:
     name: Build EGAPx containers
@@ -54,9 +54,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          build-args:
-            - BUILD_SRC=docker.io/ncbi/egapx:${{ matrix.egapx_tag }}
-          context: ".github/docker"
+          build-args: BUILD_SRC=docker.io/ncbi/egapx:${{ matrix.egapx_tag }}
+          context: .github/docker
           no-cache: true
           platforms: linux/amd64
           push: true
