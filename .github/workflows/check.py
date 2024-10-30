@@ -3,6 +3,7 @@
 import abc
 import json
 import jsonschema
+import os
 import requests
 import sys
 import typing
@@ -131,4 +132,6 @@ dockerhub_tags = DockerhubTags("ncbi/egapx", ".github/workflows/dockerhub-tags.s
 quay_tags = QuayTags("galaxy/egpax", ".github/workflows/quay-tags.schema", ".github/workflows/quay-error.schema")
 
 tags_to_build = dockerhub_tags.get_missing_tags(quay_tags)
-print(f"egapx_tags='{json.dumps(tags_to_build)}'")
+
+with open(os.environ["GITHUB_OUTPUT"], "a") as fh:
+    print(f"egapx_tags='{json.dumps(tags_to_build)}'", file=fh)

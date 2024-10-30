@@ -23,9 +23,15 @@ jobs:
         with:
           path: ".github/workflows/requirements.txt"
 
+      - name: foof
+        run: echo "$GITHUB_OUTPUT"
+
+      - name: boof
+        run: cat "$GITHUB_OUTPUT"
+
       - name: Run Python script
         id: get-tags
-        run: python ".github/workflows/check.py" >> "$GITHUB_OUTPUT"
+        run: python ".github/workflows/check.py"
 
       - name: foof
         run: echo "$GITHUB_OUTPUT"
