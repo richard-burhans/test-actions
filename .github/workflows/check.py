@@ -131,6 +131,9 @@ tags_to_build: list[str] = []
 dockerhub_tags = DockerhubTags("ncbi/egapx", ".github/workflows/dockerhub-tags.schema", ".github/workflows/dockerhub-error.schema")
 quay_tags = QuayTags("galaxy/egpax", ".github/workflows/quay-tags.schema", ".github/workflows/quay-error.schema")
 
+print(dockerhub_tags.tag_dict)
+print(quay_tags.tag_dict)
+
 tags_to_build = dockerhub_tags.get_missing_tags(quay_tags)
 
 with open(os.environ["GITHUB_OUTPUT"], "a") as fh:
