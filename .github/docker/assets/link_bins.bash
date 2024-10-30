@@ -24,7 +24,7 @@ cd "$symlinks_dir"
 for executable_dir in $executable_dirs; do
     find "$executable_dir" -type f -print0 2>/dev/null |
         while IFS= read -r -d '' pathname; do
-            value=$(file "$pathname" 2>/dev/null | grep "executable")
+            value=$(file "$pathname" 2>/dev/null | grep "executable" || true)
             if [ -n "$value" ]; then
                 filename="${pathname##*/}"
                 if [ ! -e "$filename" ]; then
