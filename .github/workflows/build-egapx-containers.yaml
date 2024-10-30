@@ -51,8 +51,10 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         env:
-          BUILD_SRC: ncbi/${{ matrix.egapx_tag }}
+          BUILD_SRC: docker.io/ncbi/egapx:${{ matrix.egapx_tag }}
         with:
           context: ".github/docker"
           no-cache: true
-          tags: ${{ matrix.egapx_tag }}
+          platforms: linux/amd64
+          push: true
+          tags: egpax:${{ matrix.egapx_tag }}
