@@ -57,7 +57,7 @@ jobs:
         with:
           build-args: BUILD_SRC=docker.io/ncbi/egapx:${{ matrix.egapx_tag }}
           context: .github/docker
-          containerfiles:
+          containerfiles: Dockerfile
           tags: quay.io/galaxy/egpax:${{ matrix.egapx_tag }}
 
       - name: Push EGPAPx image to Quay.io
