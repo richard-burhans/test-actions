@@ -64,3 +64,4 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: quay.io/galaxy/egpax:${{ matrix.egapx_tag }}
+          outputs: type=image,name=target
