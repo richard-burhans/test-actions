@@ -4,6 +4,7 @@ set -o errexit
 set -o nounset
 set -o pipefail
 set -o posix
+set -o xtrace
 
 project_root="/galaxy"
 miniforge_root="$project_root/miniforge3"
