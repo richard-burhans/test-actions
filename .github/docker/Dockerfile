@@ -1,4 +1,4 @@
-ARG BUILD_SRC=fake
+ARG BUILD_SRC
 FROM $BUILD_SRC
 # install OS updates
 RUN DEBIAN_FRONTEND=noninteractive /bin/bash -c "apt-get update && apt-get upgrade -u -y && apt-get dist-upgrade -y && apt-get autoremove -y && apt-get autoclean -y"
