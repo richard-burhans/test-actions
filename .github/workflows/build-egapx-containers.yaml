@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      egapx_tags: ${{ steps.get-tags..outputs.egapx_tags }} 
+      egapx_tags: ${{ steps.get-tags.outputs.egapx_tags }} 
 
     steps:
       - name: Checkout code
