@@ -60,4 +60,3 @@ jobs:
          context: .github/docker
          push: true
          tags: quay.io/galaxy/egpax:${{ matrix.egapx_tag }}
-
