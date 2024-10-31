@@ -60,4 +60,4 @@ jobs:
           context: .github/docker
           push: true
           tags: quay.io/galaxy/egpax:${{ matrix.egapx_tag }}
-          secrets: GIT_AUTH_TOKEN=${{ secrets.QUAY_ROBOT_TOKEN }}
+          secrets: GIT_AUTH_TOKEN=${{ secrets.QUAY_APP_TOKEN }}
