@@ -43,7 +43,6 @@ jobs:
 
       - name: Set up Docker Buildx
         env:
-          BUILD_SRC: docker.io/ncbi/egapx:${{ matrix.egapx_tag }}
         uses: docker/setup-buildx-action@v3
 
       - name: Login to Quay.io
@@ -56,9 +55,9 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         env:
-          BUILD_SRC: docker.io/ncbi/egapx:${{ matrix.egapx_tag }}
+          EGAPX_TAG: ${{ matrix.egapx_tag }}
         with:
-          build-args: BUILD_SRC=docker.io/ncbi/egapx:${{ matrix.egapx_tag }}
+          build-args: EGAPX_TAG=${{ matrix.egapx_tag }}
           context: .github/docker
           push: true
           tags: quay.io/galaxy/egpax:${{ matrix.egapx_tag }}
