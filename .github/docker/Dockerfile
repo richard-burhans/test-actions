@@ -1,10 +1,25 @@
-ARG EGAPX_TAG=latest
-FROM docker.io/ncbi/egapx:${EGAPX_TAG}
-# install OS updates
-RUN DEBIAN_FRONTEND=noninteractive /bin/bash -c "apt-get update && apt-get upgrade -u -y && apt-get dist-upgrade -y && apt-get autoremove -y && apt-get autoclean -y"
-# install pyvenv-3 binary for python3
-RUN DEBIAN_FRONTEND=noninteractive /bin/bash -c "apt-get install -y python3-venv"
-COPY assets/link_bins.bash /root/
-RUN DEBIAN_FRONTEND=noninteractive /bin/bash -c "/root/link_bins.bash && rm /root/link_bins.bash"
-COPY assets/bootstrap.bash /root/
-RUN DEBIAN_FRONTEND=noninteractive /bin/bash -c "/root/bootstrap.bash && rm /root/bootstrap.bash"
+ARG EGAPx_TAG=latest
+FROM docker.io/ncbi/egapx:${EGAPx_TAG}
+
+# - install OS updates
+# - install venv module for python3
+# - create symlinks for executables
+RUN --mount=type=bind,source=assets,target=/root/bin <<EOF
+#!/usr/bin/env bash
+export DEBIAN_FRONTEND=noninteractive
+apt-get update
+apt-get install python3-venv
+apt-get dist-upgrade
+apt-get autoremove
+apt-get clean
+rm -rf /var/lib/apt/lists/*
+/root/bin/link_bins.bash
+EOF
+
+# - install latest release of miniforge
+# - create conda env for nextflow
+# - install EGAPx runner script
+RUN --mount=type=bind,source=assets,target=/root/bin <<EOF
+#!/usr/bin/env bash
+/root/bin/bootstrap.bash
+EOF
