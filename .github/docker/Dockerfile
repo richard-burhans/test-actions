@@ -8,10 +8,10 @@ RUN --mount=type=bind,source=assets,target=/root/bin <<EOF
 #!/usr/bin/env bash
 export DEBIAN_FRONTEND=noninteractive
 apt-get update
-apt-get install python3-venv
-apt-get dist-upgrade
-apt-get autoremove
-apt-get clean
+apt-get -y install python3-venv
+apt-get -y dist-upgrade
+apt-get -y autoremove
+apt-get -y clean
 rm -rf /var/lib/apt/lists/*
 /root/bin/link_bins.bash
 EOF
